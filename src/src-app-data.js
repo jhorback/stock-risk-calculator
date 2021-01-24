@@ -31,6 +31,7 @@ export { SrcAppData }
  * @property {String} profitExitUSD
  * @property {String} stopProfitUSD
  * @property {String} stopLossUSD
+ * @property {Boolean} isAboveMaxShares
  */
 
 class SrcAppData extends HTMLElement {
@@ -55,10 +56,38 @@ class SrcAppData extends HTMLElement {
         stockRisks: []
     };
 
+    static defaultRiskProfiles = [{
+        name: "Mature Trader",
+        riskPerTrade: 200,
+        maxSharesAtOrUnder20: 1000,
+        maxSharesOver20: 500,
+        tradesPerDay: 10,
+        tradingDaysPerWeek: 5,
+        winningDayPercentage: 0.6
+    }, {
+        name: "Intermediate Trader",
+        riskPerTrade: 100,
+        maxSharesAtOrUnder20: 400,
+        maxSharesOver20: 200,
+        tradesPerDay: 10,
+        tradingDaysPerWeek: 5,
+        winningDayPercentage: 0.6
+    }, {
+        name: "Beginning Trader",
+        riskPerTrade: 50,
+        maxSharesAtOrUnder20: 200,
+        maxSharesOver20: 100,
+        tradesPerDay: 10,
+        tradingDaysPerWeek: 5,
+        winningDayPercentage: 0.6
+    }];
+
     state = SrcAppData.defaultState;
 
-    constructor() {
-        super();
+    connectedCallback() {
+        SrcAppData.defaultRiskProfiles.forEach(p => {
+            this.addRiskProfile(p);
+        });
     }
 
     /**
@@ -136,7 +165,13 @@ class SrcAppData extends HTMLElement {
             lossExitUSD: formatUSD(item.lossExit),
             profitExitUSD: formatUSD(item.profitExit),
             stopProfitUSD: formatUSD(item.stopProfit),
-            stopLossUSD: formatUSD(item.stopLoss)
+            stopLossUSD: formatUSD(item.stopLoss),
+            isAboveMaxShares: isAboveMaxShares({
+                cost,
+                count,
+                maxSharesAtOrUnder20: risk.maxSharesAtOrUnder20,
+                maxSharesOver20: risk.maxSharesOver20
+            })
         };
 
         this.state = {
@@ -176,6 +211,21 @@ const getNextId = () => {
 function formatUSD(amount) {
     return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(amount);
 }
+
+
+const isAboveMaxShares = ({cost, count, maxSharesOver20, maxSharesAtOrUnder20}) => {
+    cost = Number(cost);
+    count = Number(count);
+    maxSharesOver20 = Number(maxSharesOver20);
+    maxSharesAtOrUnder20 = Number(maxSharesAtOrUnder20);
+
+    return cost > 20 ?
+        count > maxSharesOver20 ?
+            true : false
+        : 
+        count > maxSharesAtOrUnder20  ?
+            true : false;  
+};
 
 
 window.customElements.define("src-app-data", SrcAppData);

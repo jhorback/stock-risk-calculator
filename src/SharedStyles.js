@@ -1,18 +1,23 @@
 import { css } from 'lit-element';
 
 export class SharedStyles {
-
     static riskProfile = css`
         .risk-profile {
             display: flex;
-            justify-content: space-between;      
-            border: 1px solid #ccc;
-            background: #eee;
+            justify-content: space-evenly;
+            padding-bottom: 1rem;
+        }
+        .risk-profile > div {
+            border: 1px solid var(--border-color, #ccc);
+            background: var(--highlight-background, #eee);
             padding: 0.5rem;
             border-radius: 0.3rem;
         }
         hr {
-            border-top:1px solid #ccc;
+            height: 1px;
+            border: none;
+            color: var(--border-color, #ccc); 
+            background-color: var(--border-color, #ccc);
         }
     `;
     static form = css`
@@ -21,18 +26,15 @@ export class SharedStyles {
         }
         form input {
             border-radius: 0.2rem;
-            border: 1px solid #ccc;
-            background: #FFF;
-            max-width: 50px;
-        }
-        form input.long {
-            max-width: 100px;
+            border: 1px solid var(--border-color, #ccc);
+            background: var(--input-background, #fff);
+            max-width: 100%;
         }
         button {
             border-radius: 0.2rem;
-            background: #555;
-            color: #eee;
-            text-transform: uppercase;
+            background-color: var(--button-background-color, #555);
+            color: var(--button-color, #eee);
+            text-transform: uppercase;            
             border: 0px;
             font-size: 0.7rem;
             padding: 0.2rem 1rem;
@@ -40,25 +42,27 @@ export class SharedStyles {
     `;
 
     static dataTable = css`
-        table {
+        table.data-table {
             margin: 1rem 0;
             border-collapse: collapse;
             width: 100%;
         }
-        table caption {
+        table.data-table caption {
             font-weight: bold;
             text-align: left;
         }
-        td, th {
-            border: 1px solid #CCC;
-            padding: 0.25rem 0.5rem;
+        table.data-table tbody td, th {
+            padding: 0.25rem 0em;
             text-align: left;
             font-size: 0.9rem;
+            border-bottom: 1px solid var(--border-color, #ccc);
         }
-        th {
-            text-transform: uppercase;
-            background: #eee;
-            font-size: 0.8rem;
+        table.data-table th {
+            opacity: 0.7;
+            font-size: 0.6rem;
+        }
+        table.data-table tfoot td {
+            padding-top: 1rem;
         }
     `;
 

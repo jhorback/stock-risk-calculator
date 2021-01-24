@@ -3,7 +3,7 @@
 export const stockRiskDefinitions = {
     name: {
         name: "Name",
-        description: "The name of the risk profile"
+        description: "The name of the risk profile."
     },
     riskPerTrade: {
         name: "Risk per trade",
@@ -15,7 +15,7 @@ export const stockRiskDefinitions = {
     },
     maxSharesAtOrUnder20: {
         name: "Max shares <= $20",
-        description: "The maxumum numbers of shares to trade for shares at or less than $20"
+        description: "The maxumum numbers of shares to trade for shares at or less than $20."
     },
     cost: {
         name: "Stock cost",
@@ -29,28 +29,22 @@ export const stockRiskDefinitions = {
         name: "Total in",
         description: "The total cost of all shares."
     },
-
     lossExit: {
         name: "Loss out",
-        description: ""
+        description: "The total amount of money recieved on a loss."
     },
     profitExit: {
         name: "Profit out",
-        description: ""
+        description: "The total amount of money received on a profit."
     },
-
     stopLoss: {
         name: "Stop loss",
-        description: "The amount of money the stock is worth if taking the loss exit"
+        description: "The amount of money the stock is worth if taking the loss exit."
     },
-
     stopProfit: {
         name: "Stop profit",
         description: "The amount of money the stock is worth if making the profit exit (2 x risk/trade)."
     },
-    
-
-
     tradesPerDay: {
         name: "Trades per day",
         description: "How many trades will be taken per day."
@@ -73,6 +67,6 @@ export const stockRiskDefinitions = {
     },
     potentialWeeklyProfit:{
         name: "Potential weekly profit",
-        description: "How much money could be made per week"
+        description: "How much money could be made per week."
     }
 };

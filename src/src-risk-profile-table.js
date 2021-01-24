@@ -10,11 +10,21 @@ class SrcRiskProfileTable extends LitElement {
   static get styles() {
     return css`
       :host {
+          display: block;
+          margin-bottom: 5rem;
+          background: var(--risk-background, red);
+          margin: 0rem 0rem 3rem;
+          padding: 0.01rem 1rem 0.2rem 1rem;
+          border-radius: 0.5rem;
+          font-size: 0.8rem;
       }
       h2 {
           font-size: 1rem;
-          margin: 1rem 0 0 0;
+          margin: 1rem 0 1rem 0;
           padding: 0;
+      }
+      .over-max {
+        text-decoration: line-through;
       }
       ${SharedStyles.dataTable}
       ${SharedStyles.form}
@@ -40,7 +50,7 @@ class SrcRiskProfileTable extends LitElement {
     const { state } = this;
 
     return html`
-        <h2>Risk Profile: ${state.name}</h2>
+        <h2>${state.name}</h2>
         <div class="risk-profile">
             <div>
                 <div>
@@ -115,7 +125,7 @@ class SrcRiskProfileTable extends LitElement {
 
         <div>
             <form @submit="${this.submitAddRiskItemForm}">
-            <table>
+            <table class="data-table">
                 <caption>Trades</caption>
                 <thead>
                     <tr>
@@ -137,7 +147,7 @@ class SrcRiskProfileTable extends LitElement {
                 </thead>
                 <tbody>
                     ${state.items.map(i => html`
-                        <tr>
+                        <tr class="${i.isAboveMaxShares ? "over-max" : ""}">
                             <td>${i.costUSD}</td>
                             <td>${i.count}</td>
                             <td>${i.totalInUSD}</td>
@@ -146,26 +156,24 @@ class SrcRiskProfileTable extends LitElement {
                             <td>${i.stopProfitUSD}</td>
                             <td>${i.profitExitUSD}</td>
                         </tr>
-                    `)}
+                    `)}                   
+                </tbody>
+                <tfoot>
                     <tr>
                         <td>
-                            <input id="cost" name="cost" type="number" class="long" value="10">
+                            <input id="cost" name="cost" type="number" value="10">
                         </td>
                         <td>
-                            <input id="count" name="count" type="number" class="long"
+                            <input id="count" name="count" type="number"
                                 value="${state.maxSharesAtOrUnder20}"
                             >
                         </td>
                         <td>
-                            <button type="submit" style="visibility:hidden">Add Entry</button>
+                            <button type="submit">Add Trade</button>
                         </td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
                     </tr>
-                </tbody>
-            </table>
+                </tfoot>
+            </table>                
             </form>
         </div>
     `;
