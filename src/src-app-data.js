@@ -1,4 +1,4 @@
-import { calculateStockRisk } from './calculateStockRisk';
+import { calculateRiskProfile, calculateTrade} from './riskCalculator';
 import { stockRiskDefinitions } from "./stockRiskDefinitions.js";
 
 export { SrcAppData }
@@ -52,11 +52,6 @@ class SrcAppData extends HTMLElement {
             winningDayPercentage: 0.6,
             rows: []
         },
-        /** @type {StockRiskItem} */
-        defaultStockRiskItem: {
-            cost: 10,
-            count: 100
-        },
         stockRisks: []
     };
 
@@ -81,6 +76,18 @@ class SrcAppData extends HTMLElement {
         winningDayPercentage
     } = SrcAppData.defaultState.defaultStockRisk) => {
 
+        // calculateRiskProfile
+        const {
+            maxDailyLoss,
+            potentialDailyProfit,
+            potentialWeeklyProfit
+        } = calculateRiskProfile({
+            riskPerTrade,
+            tradesPerDay,
+            tradingDaysPerWeek,
+            winningDayPercentage
+        });
+
         this.state = {
             ...this.state,
             stockRisks: [
@@ -94,6 +101,9 @@ class SrcAppData extends HTMLElement {
                     tradesPerDay,
                     tradingDaysPerWeek,
                     winningDayPercentage,
+                    maxDailyLossUSD: formatUSD(maxDailyLoss),
+                    potentialDailyProfitUSD: formatUSD(potentialDailyProfit),
+                    potentialWeeklyProfitUSD: formatUSD(potentialWeeklyProfit),
                     items: []
                 },
                 ...this.state.stockRisks
@@ -111,7 +121,7 @@ class SrcAppData extends HTMLElement {
 
         const risk = this.state.stockRisks.find(sr => sr.id === id);
 
-        const item = calculateStockRisk({
+        const item = calculateTrade({
             ...risk,
             cost,
             count
@@ -126,10 +136,7 @@ class SrcAppData extends HTMLElement {
             lossExitUSD: formatUSD(item.lossExit),
             profitExitUSD: formatUSD(item.profitExit),
             stopProfitUSD: formatUSD(item.stopProfit),
-            stopLossUSD: formatUSD(item.stopLoss),
-            maxDailyLossUSD: formatUSD(item.maxDailyLoss),
-            potentialDailyProfitUSD: formatUSD(item.potentialDailyProfit),
-            potentialWeeklyProfitUSD: formatUSD(item.potentialWeeklyProfit)
+            stopLossUSD: formatUSD(item.stopLoss)
         };
 
         this.state = {

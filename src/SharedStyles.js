@@ -3,7 +3,9 @@ import { css } from 'lit-element';
 export class SharedStyles {
 
     static riskProfile = css`
-        .risk-profile {            
+        .risk-profile {
+            display: flex;
+            justify-content: space-between;      
             border: 1px solid #ccc;
             background: #eee;
             padding: 0.5rem;

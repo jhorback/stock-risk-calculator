@@ -39,70 +39,101 @@ class SrcRiskProfileTable extends LitElement {
   render() {
     const { state } = this;
 
-    console.log("RENDERING TABLE");
     return html`
-        <h2>Risk Profile (${state.name})</h2>
+        <h2>Risk Profile: ${state.name}</h2>
         <div class="risk-profile">
             <div>
-                <label
-                    title=${SrcAppData.definitions.riskPerTrade.description}
-                >${SrcAppData.definitions.riskPerTrade.name}
-                </label>
-                <strong>${state.riskPerTradeUSD}</strong>
+                <div>
+                    <label
+                        title=${SrcAppData.definitions.riskPerTrade.description}
+                    >${SrcAppData.definitions.riskPerTrade.name}
+                    </label>
+                    <strong>${state.riskPerTradeUSD}</strong>
+                </div>
+                <div>
+                    <label
+                        title=${SrcAppData.definitions.maxSharesAtOrUnder20.description}
+                    >${SrcAppData.definitions.maxSharesAtOrUnder20.name}
+                    </label>
+                    <strong>${state.maxSharesAtOrUnder20}</strong>
+                </div>
+                <div>
+                    <label
+                        title=${SrcAppData.definitions.maxSharesOver20.description}
+                    >${SrcAppData.definitions.maxSharesOver20.name}
+                    </label>
+                    <strong>${state.maxSharesOver20}</strong>
+                </div>
             </div>
             <div>
-                <label
-                    title=${SrcAppData.definitions.maxSharesAtOrUnder20.description}
-                >${SrcAppData.definitions.maxSharesAtOrUnder20.name}
-                </label>
-                <strong>${state.maxSharesAtOrUnder20}</strong>
+                <div>
+                    <label
+                        title=${SrcAppData.definitions.tradesPerDay.description}
+                    >${SrcAppData.definitions.tradesPerDay.name}
+                    </label>
+                    <strong>${state.tradesPerDay}</strong>
+                </div>
+                <div>
+                    <label
+                        title=${SrcAppData.definitions.tradingDaysPerWeek.description}
+                    >${SrcAppData.definitions.tradingDaysPerWeek.name}
+                    </label>
+                    <strong>${state.tradingDaysPerWeek}</strong>
+                </div>
+                <div>
+                    <label
+                        title=${SrcAppData.definitions.winningDayPercentage.description}
+                    >${SrcAppData.definitions.winningDayPercentage.name}
+                    </label>
+                    <strong>${state.winningDayPercentage}</strong>
+                </div>
             </div>
             <div>
-                <label
-                    title=${SrcAppData.definitions.maxSharesOver20.description}
-                >${SrcAppData.definitions.maxSharesOver20.name}
-                </label>
-                <strong>${state.maxSharesOver20}</strong>
-            </div>
-            <div>
-                <label
-                    title=${SrcAppData.definitions.tradesPerDay.description}
-                >${SrcAppData.definitions.tradesPerDay.name}
-                </label>
-                <strong>${state.tradesPerDay}</strong>
-            </div>
-            <div>
-                <label
-                    title=${SrcAppData.definitions.tradingDaysPerWeek.description}
-                >${SrcAppData.definitions.tradingDaysPerWeek.name}
-                </label>
-                <strong>${state.tradingDaysPerWeek}</strong>
-            </div>
-            <div>
-                <label
-                    title=${SrcAppData.definitions.winningDayPercentage.description}
-                >${SrcAppData.definitions.winningDayPercentage.name}
-                </label>
-                <strong>${state.winningDayPercentage}</strong>
+                <div>
+                    <label
+                        title=${SrcAppData.definitions.maxDailyLoss.description}
+                    >${SrcAppData.definitions.maxDailyLoss.name}
+                    </label>
+                    <strong>${state.maxDailyLossUSD}</strong>
+                </div>
+                <div>
+                    <label
+                        title=${SrcAppData.definitions.potentialDailyProfit.description}
+                    >${SrcAppData.definitions.potentialDailyProfit.name}
+                    </label>
+                    <strong>${state.potentialDailyProfitUSD}</strong>
+                </div>
+                <div>
+                    <label
+                        title=${SrcAppData.definitions.potentialWeeklyProfit.description}
+                    >${SrcAppData.definitions.potentialWeeklyProfit.name}
+                    </label>
+                    <strong>${state.potentialWeeklyProfitUSD}</strong>
+                </div>
             </div>
         </div>       
 
         <div>
             <form @submit="${this.submitAddRiskItemForm}">
             <table>
+                <caption>Trades</caption>
                 <thead>
                     <tr>
-                        <th title="${SrcAppData.definitions.cost.description}">Cost</th>
-                        <th title="${SrcAppData.definitions.count.description}">Count</th>
-                        <th title="${SrcAppData.definitions.totalIn.description}">Total in</th>
-                        <th title="${SrcAppData.definitions.lossExit.description}">Loss exit</th>
-                        <th title="${SrcAppData.definitions.profitExit.description}">Profit exit</th>
-                        <th title="${SrcAppData.definitions.stopProfit.description}">Stop profit</th>
-                        <th title="${SrcAppData.definitions.stopLoss.description}">Stop loss</th>
-                        <th title="${SrcAppData.definitions.maxDailyLoss.description}">Max daily loss</th>
-                        <th title="${SrcAppData.definitions.potentialDailyProfit.description}">Potential daily profit</th>
-                        <th title="${SrcAppData.definitions.potentialWeeklyProfit.description}">Potential weekly profit</th>
-                    </tr>
+                        <th title="${SrcAppData.definitions.cost.description}"
+                            >${SrcAppData.definitions.cost.name}</th>
+                        <th title="${SrcAppData.definitions.count.description}"
+                            >${SrcAppData.definitions.count.name}</th>
+                        <th title="${SrcAppData.definitions.totalIn.description}"
+                            >${SrcAppData.definitions.totalIn.name}</th>
+                        <th title="${SrcAppData.definitions.stopLoss.description}"
+                            >${SrcAppData.definitions.stopLoss.name}</th>
+                        <th title="${SrcAppData.definitions.lossExit.description}"
+                            >${SrcAppData.definitions.lossExit.name}</th>
+                        <th title="${SrcAppData.definitions.stopProfit.description}"
+                            >${SrcAppData.definitions.stopProfit.name}</th>
+                        <th title="${SrcAppData.definitions.profitExit.description}"
+                            >${SrcAppData.definitions.profitExit.name}</th>
+                     </tr>
                 </thead>
                 <tbody>
                     ${state.items.map(i => html`
@@ -110,21 +141,20 @@ class SrcRiskProfileTable extends LitElement {
                             <td>${i.costUSD}</td>
                             <td>${i.count}</td>
                             <td>${i.totalInUSD}</td>
-                            <td>${i.lossExitUSD}</td>
-                            <td>${i.profitExitUSD}</td>
-                            <td>${i.stopProfitUSD}</td>
                             <td>${i.stopLossUSD}</td>
-                            <td>${i.maxDailyLossUSD}</td>
-                            <td>${i.potentialDailyProfitUSD}</td>
-                            <td>${i.potentialWeeklyProfitUSD}</td>
+                            <td>${i.lossExitUSD}</td>
+                            <td>${i.stopProfitUSD}</td>
+                            <td>${i.profitExitUSD}</td>
                         </tr>
                     `)}
                     <tr>
                         <td>
-                            <input id="cost" name="cost" type="number" class="long" value="${SrcAppData.defaultState.defaultStockRiskItem.cost}">
+                            <input id="cost" name="cost" type="number" class="long" value="10">
                         </td>
                         <td>
-                            <input id="count" name="count" type="number" class="long" value="${SrcAppData.defaultState.defaultStockRiskItem.count}">
+                            <input id="count" name="count" type="number" class="long"
+                                value="${state.maxSharesAtOrUnder20}"
+                            >
                         </td>
                         <td>
                             <button type="submit" style="visibility:hidden">Add Entry</button>
@@ -133,28 +163,10 @@ class SrcRiskProfileTable extends LitElement {
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
                     </tr>
                 </tbody>
             </table>
             </form>
-
-
-            <!-- <form @submit="${this.submitAddRiskItemForm}">
-                <label for="cost"
-                    title="${SrcAppData.definitions.cost.description}"
-                >Cost</label>
-                <input id="cost" name="cost" type="number" class="long" value="${SrcAppData.defaultState.defaultStockRiskItem.cost}">
-                
-                <label for="count"
-                    title="${SrcAppData.definitions.count.description}"
-                >Count</label>
-                <input id="count" name="count" type="number" class="long" value="${SrcAppData.defaultState.defaultStockRiskItem.count}">
-                
-                <button type="submit">Add Entry</button>
-            </form> -->
         </div>
     `;
   }

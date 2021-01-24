@@ -31,11 +31,11 @@ export const stockRiskDefinitions = {
     },
 
     lossExit: {
-        name: "Loss exit",
+        name: "Loss out",
         description: ""
     },
     profitExit: {
-        name: "Profit exit",
+        name: "Profit out",
         description: ""
     },
 

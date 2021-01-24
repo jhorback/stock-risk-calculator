@@ -61,12 +61,11 @@ class SrcApp extends LitElement {
 
   render() {
     const { state } = this;
-    console.log("RENDERING APP");
 
     return html`
       <div class="title-bar">
         <h1>${state.title}</h1>
-        <div>
+        <div ?hidden="${this.showAddProfileForm}">
           <button
             @click="${this.toggleShowAddProfileForm}"
           >Add Risk Profile</button>
@@ -80,6 +79,7 @@ class SrcApp extends LitElement {
           ?hidden="${!this.showAddProfileForm}"
           class="risk-profile"
           >
+          <h2>Add a risk profile</h2>
           <div>
             <div>
               <label for="name"
@@ -130,6 +130,7 @@ class SrcApp extends LitElement {
               >Winning day percentage</label>        
               <input id="winningDayPercentage" name="winningDayPercentage" type="number" step="0.01" value="${state.defaultStockRisk.winningDayPercentage}">
             </div>
+            <button type="button" @click="${this.toggleShowAddProfileForm}">Cancel</button>
             <button type="submit">Add</button>
           </div>
         </form>
