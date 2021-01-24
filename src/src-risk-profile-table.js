@@ -13,6 +13,7 @@ class SrcRiskProfileTable extends LitElement {
           display: block;
           margin-bottom: 5rem;
           background: var(--risk-background, red);
+          box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
           margin: 0rem 0rem 3rem;
           padding: 0.01rem 1rem 0.2rem 1rem;
           border-radius: 0.5rem;

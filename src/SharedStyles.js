@@ -10,8 +10,9 @@ export class SharedStyles {
         .risk-profile > div {
             border: 1px solid var(--border-color, #ccc);
             background: var(--highlight-background, #eee);
-            padding: 0.5rem;
-            border-radius: 0.3rem;
+            padding: 0.5rem 1rem;
+            border-radius: 0.1rem;
+            xbox-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
         }
         hr {
             height: 1px;
@@ -28,14 +29,15 @@ export class SharedStyles {
             border-radius: 0.2rem;
             border: 1px solid var(--border-color, #ccc);
             background: var(--input-background, #fff);
+            color: var(--input-color, #000);
             max-width: 100%;
         }
         button {
             border-radius: 0.2rem;
+            border:1px solid var(--border-color, red);
             background-color: var(--button-background-color, #555);
             color: var(--button-color, #eee);
-            text-transform: uppercase;            
-            border: 0px;
+            text-transform: uppercase;
             font-size: 0.7rem;
             padding: 0.2rem 1rem;
         }
