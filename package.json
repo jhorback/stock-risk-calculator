@@ -1,0 +1,24 @@
+{
+  "name": "@harbor/stock-risk-calculator",
+  "version": "0.1.0",
+  "private": true,
+  "description": "A stock risk calculator.",
+  "license": "MIT",
+  "main": "index.js",
+  "module": "index.js",
+  "scripts": {
+    "start": "web-dev-server --open demo/ --node-resolve",
+    "start:watch": "web-dev-server demo/ --node-resolve --watch",
+    "test": "web-test-runner test/**/*.test.js --coverage --node-resolve",
+    "test:watch": "web-test-runner test/**/*.test.js --node-resolve --watch"
+  },
+  "dependencies": {
+    "lit-element": "2.4.0",
+    "lit-html": "1.3.0"
+  },
+  "devDependencies": {
+    "@open-wc/testing": "2.5.32",
+    "@web/test-runner": "0.12.5",
+    "@web/dev-server": "0.1.5"
+  }
+}

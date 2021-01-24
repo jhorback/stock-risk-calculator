@@ -1,0 +1,143 @@
+<html>
+<head>
+    <title>Stock Calculator</title>
+</head>
+<body>
+
+<script type="module">
+/**
+ * Numbers are a bit off
+ * 
+ * Idea is to have a UI that sets up a StockRisk instance
+ * Could add multiples on the screen
+ * 
+ * For each risk can add stock entries to calculate
+ * Shows in table format
+ * 
+ * Shows definitions of calucations below
+ * 
+ */
+export { StockRisk };
+
+
+
+class StockRisk {
+    riskPerTrade = 50;
+    tradesPerDay = 10;
+    tradingDaysPerWeek = 5;
+    winningDayPercentage = 0.6;
+
+    constructor({
+        riskPerTrade,
+        tradesPerDay,
+        tradingDaysPerWeek,
+        winningDayPercentage
+    } = {}) {
+        this.riskPerTrade = riskPerTrade || this.riskPerTrade;
+        this.tradesPerDay = tradesPerDay || this.tradesPerDay;
+        this.tradingDaysPerWeek = tradingDaysPerWeek || this.tradingDaysPerWeek;
+        this.winningDayPercentage = winningDayPercentage || this.winningDayPercentage;
+    }
+
+    /**
+     * Add a cost and a count for a trade.
+     */
+    add({cost, count}) {
+        return addStock({
+            cost,
+            count,
+            ...this
+        })
+    }
+    
+    static reset() {
+
+    }
+}
+
+window.StockRisk = StockRisk;
+
+const definitions = {
+    riskPerTrade: "",
+    stockCost: "",
+    stockCount: "",
+    totalIn: "",
+    stopProfit: "",
+    stopLoss: "",
+    tradesPerDay: "",
+    maxDailyLoss: "",
+    potentialDailyProfit: "",
+    tradingDaysPerWeek: "",
+    winningDayPercentage: "",
+    potentialWeeklyProfit: ""
+};
+
+const addStock = ({
+    cost,
+    count,
+    riskPerTrade,
+    tradesPerDay,
+    tradingDaysPerWeek,
+    winningDayPercentage
+}) => {
+    
+    const totalIn = cost * count;
+    const stopProfit = (totalIn + riskPerTrade*2) / count;
+    const stopLoss = (totalIn - riskPerTrade) / count;
+    const maxDailyLoss = (riskPerTrade * 3);
+    const potentialDailyProfit = (stopProfit * count * (tradesPerDay/2)) - (stopLoss * count * (tradesPerDay/2));
+    const potentialWeeklyProfit = (potentialDailyProfit * (tradingDaysPerWeek * winningDayPercentage))
+        - (maxDailyLoss * (tradingDaysPerWeek * (1-winningDayPercentage)));
+
+    const calculations = {
+        cost: formatUSD(cost),
+        count,
+        riskPerTrade: formatUSD(riskPerTrade),
+        tradesPerDay,
+        tradingDaysPerWeek,
+        winningDayPercentage,
+        totalIn: formatUSD(totalIn),
+        stopProfit: formatUSD(stopProfit),
+        stopLoss: formatUSD(stopLoss),
+        maxDailyLoss: formatUSD(maxDailyLoss),
+        potentialDailyProfit: formatUSD(potentialDailyProfit),
+        potentialWeeklyProfit: formatUSD(potentialWeeklyProfit)
+    };
+
+    return calculations;
+};
+
+
+const formatUSD = amount =>
+    new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(amount)
+
+
+/*
+To calculate
+Total in:
+Profit stop
+Loss stop
+Potential daily profit
+Max daily loss
+Earnings per week
+
+
+
+Global functions = stocks.add({count, cost}); stocks.reset()
+
+*/
+
+/*
+$100/$50 earnings/risk per trade ($250/day)
+100 share max > $20/share
+200 share max < $20/share ($4k max)
+Max daily loss $150
+*Earnings: $400/week
+*/
+
+
+
+
+</script>
+</body>
+</html>
