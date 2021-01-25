@@ -53,13 +53,14 @@ export class SharedStyles {
             font-weight: bold;
             text-align: left;
         }
-        table.data-table tbody td, th {
-            padding: 0.25rem 0em;
+        table.data-table tbody td,
+        table.data-table thead th {
+            padding: 0.25rem 1rem 0.25rem 0;
             text-align: left;
             font-size: 0.9rem;
             border-bottom: 1px solid var(--border-color, #ccc);
         }
-        table.data-table th {
+        table.data-table  thead th {
             opacity: 0.7;
             font-size: 0.6rem;
         }

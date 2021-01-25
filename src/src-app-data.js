@@ -27,10 +27,10 @@ export { SrcAppData }
  * @property {String} costUSD
  * @property {Number} count
  * @property {String} totalInUSD
- * @property {String} lossExitUSD
- * @property {String} profitExitUSD
- * @property {String} stopProfitUSD
- * @property {String} stopLossUSD
+ * @property {String} longProfitExitUSD
+ * @property {String} longLossExitUSD
+ * @property {String} shortProfitExitUSD
+ * @property {String} shortLossExitUSD
  * @property {Boolean} isAboveMaxShares
  */
 
@@ -162,10 +162,10 @@ class SrcAppData extends HTMLElement {
             count,
             costUSD: formatUSD(cost),
             totalInUSD: formatUSD(item.totalIn),
-            lossExitUSD: formatUSD(item.lossExit),
-            profitExitUSD: formatUSD(item.profitExit),
-            stopProfitUSD: formatUSD(item.stopProfit),
-            stopLossUSD: formatUSD(item.stopLoss),
+            longProfitExitUSD: formatUSD(item.longProfitExit),
+            longLossExitUSD: formatUSD(item.longLossExit),
+            shortProfitExitUSD: formatUSD(item.shortProfitExit),
+            shortLossExitUSD: formatUSD(item.shortLossExit),
             isAboveMaxShares: isAboveMaxShares({
                 cost,
                 count,

@@ -136,14 +136,14 @@ class SrcRiskProfileTable extends LitElement {
                             >${SrcAppData.definitions.count.name}</th>
                         <th title="${SrcAppData.definitions.totalIn.description}"
                             >${SrcAppData.definitions.totalIn.name}</th>
-                        <th title="${SrcAppData.definitions.stopLoss.description}"
-                            >${SrcAppData.definitions.stopLoss.name}</th>
-                        <th title="${SrcAppData.definitions.lossExit.description}"
-                            >${SrcAppData.definitions.lossExit.name}</th>
-                        <th title="${SrcAppData.definitions.stopProfit.description}"
-                            >${SrcAppData.definitions.stopProfit.name}</th>
-                        <th title="${SrcAppData.definitions.profitExit.description}"
-                            >${SrcAppData.definitions.profitExit.name}</th>
+                        <th title="${SrcAppData.definitions.shortLossExit.description}"
+                            >${SrcAppData.definitions.shortLossExit.name}</th>
+                        <th title="${SrcAppData.definitions.shortProfitExit.description}"
+                            >${SrcAppData.definitions.shortProfitExit.name}</th>
+                        <th title="${SrcAppData.definitions.longLossExit.description}"
+                            >${SrcAppData.definitions.longLossExit.name}</th>
+                        <th title="${SrcAppData.definitions.longProfitExit.description}"
+                            >${SrcAppData.definitions.longProfitExit.name}</th>
                      </tr>
                 </thead>
                 <tbody>
@@ -152,10 +152,10 @@ class SrcRiskProfileTable extends LitElement {
                             <td>${i.costUSD}</td>
                             <td>${i.count}</td>
                             <td>${i.totalInUSD}</td>
-                            <td>${i.stopLossUSD}</td>
-                            <td>${i.lossExitUSD}</td>
-                            <td>${i.stopProfitUSD}</td>
-                            <td>${i.profitExitUSD}</td>
+                            <td>${i.shortLossExitUSD}</td>
+                            <td>${i.shortProfitExitUSD}</td>
+                            <td>${i.longLossExitUSD}</td>
+                            <td>${i.longProfitExitUSD}</td>
                         </tr>
                     `)}                   
                 </tbody>
@@ -169,7 +169,7 @@ class SrcRiskProfileTable extends LitElement {
                                 value="${state.maxSharesAtOrUnder20}"
                             >
                         </td>
-                        <td>
+                        <td colspan="5">
                             <button type="submit">Add Trade</button>
                         </td>
                     </tr>

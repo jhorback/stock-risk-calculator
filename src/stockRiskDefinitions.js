@@ -29,21 +29,21 @@ export const stockRiskDefinitions = {
         name: "Total in",
         description: "The total cost of all shares."
     },
-    lossExit: {
-        name: "Loss out",
-        description: "The total amount of money recieved on a loss."
+    longLossExit: {
+        name: "Long loss exit",
+        description: "The price to sell at to take a loss on a long trade."
     },
-    profitExit: {
-        name: "Profit out",
-        description: "The total amount of money received on a profit."
+    longProfitExit: {
+        name: "Long profit exit",
+        description: "The price to sell at to take a profit on a long trade."
     },
-    stopLoss: {
-        name: "Stop loss",
-        description: "The amount of money the stock is worth if taking the loss exit."
+    shortLossExit: {
+        name: "Short loss exit",
+        description: "The price to buy to cover at to take a loss on a short trade."
     },
-    stopProfit: {
-        name: "Stop profit",
-        description: "The amount of money the stock is worth if making the profit exit (2 x risk/trade)."
+    shortProfitExit: {
+        name: "Short profit exit",
+        description: "The price to buy to cover at to take a profit on a short trade."
     },
     tradesPerDay: {
         name: "Trades per day",
