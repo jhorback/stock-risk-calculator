@@ -285,8 +285,8 @@ class SrcApp extends LitElement {
 
   riskPerTradeKeyUp(event) {
     const val = event.target.value;
-    this.$.maxSharesAtOrUnder20.value = val * 2;
-    this.$.maxSharesOver20.value = val * 4;
+    this.$.maxSharesAtOrUnder20.value = val * 4;
+    this.$.maxSharesOver20.value = val * 2;
   }
 }
 

@@ -3611,7 +3611,7 @@ class SrcRiskProfileTable extends LitElement {
                 <tfoot>
                     <tr>
                         <td>
-                            <input id="cost" name="cost" type="number" value="10">
+                            <input id="cost" name="cost" type="number" value="10"  step="0.01">
                         </td>
                         <td>
                             <input id="count" name="count" type="number"
@@ -3934,8 +3934,8 @@ class SrcApp extends LitElement {
 
   riskPerTradeKeyUp(event) {
     const val = event.target.value;
-    this.$.maxSharesAtOrUnder20.value = val * 2;
-    this.$.maxSharesOver20.value = val * 4;
+    this.$.maxSharesAtOrUnder20.value = val * 4;
+    this.$.maxSharesOver20.value = val * 2;
   }
 }
 
