@@ -3019,6 +3019,7 @@ const repeat = directive((items, keyFnOrTemplate, template) => {
 /**
  * @typedef TradeReturn
  * @property {Number} totalIn
+ * @property {Number} riskPerShare
  * @property {Number} longProfitExit
  * @property {Number} longLossExit
  * @property {Number} shortProfitExit
@@ -3073,11 +3074,13 @@ function calculateTrade({
     const longLossExit = (totalIn - riskPerTrade) / count;
     const shortProfitExit = (totalIn - riskPerTrade*2) / count;
     const shortLossExit = (totalIn + riskPerTrade) / count;
-    /*
-    */
-        
+    const riskPerShare =  cost - ((totalIn - riskPerTrade) / count);
+    
+    
+
     const calculations = {
         totalIn,
+        riskPerShare,
         longLossExit,
         longProfitExit,
         shortProfitExit,
@@ -3115,6 +3118,10 @@ const stockRiskDefinitions = {
     totalIn: {
         name: "Total in",
         description: "The total cost of all shares."
+    },
+    riskPerShare: {
+        name: "Risk/share",
+        description: "The risk per share (useful for a stop loss)."
     },
     longLossExit: {
         name: "Long loss exit",
@@ -3182,6 +3189,7 @@ const stockRiskDefinitions = {
  * @property {String} costUSD
  * @property {Number} count
  * @property {String} totalInUSD
+ * @property {String} riskPerShareUSD
  * @property {String} longProfitExitUSD
  * @property {String} longLossExitUSD
  * @property {String} shortProfitExitUSD
@@ -3317,6 +3325,7 @@ class SrcAppData extends HTMLElement {
             count,
             costUSD: formatUSD(cost),
             totalInUSD: formatUSD(item.totalIn),
+            riskPerShareUSD: formatUSD(item.riskPerShare),
             longProfitExitUSD: formatUSD(item.longProfitExit),
             longLossExitUSD: formatUSD(item.longLossExit),
             shortProfitExitUSD: formatUSD(item.shortProfitExit),
@@ -3584,7 +3593,9 @@ class SrcRiskProfileTable extends LitElement {
                         <th title="${SrcAppData.definitions.count.description}"
                             >${SrcAppData.definitions.count.name}</th>
                         <th title="${SrcAppData.definitions.totalIn.description}"
-                            >${SrcAppData.definitions.totalIn.name}</th>
+                            >${SrcAppData.definitions.riskPerTrade.name}</th>
+                        <th title="${SrcAppData.definitions.riskPerShare.description}"
+                            >${SrcAppData.definitions.riskPerShare.name}</th>
                         <th title="${SrcAppData.definitions.shortLossExit.description}"
                             >${SrcAppData.definitions.shortLossExit.name}</th>
                         <th title="${SrcAppData.definitions.shortProfitExit.description}"
@@ -3601,6 +3612,7 @@ class SrcRiskProfileTable extends LitElement {
                             <td>${i.costUSD}</td>
                             <td>${i.count}</td>
                             <td>${i.totalInUSD}</td>
+                            <td>${i.riskPerShareUSD}</td>
                             <td>${i.shortLossExitUSD}</td>
                             <td>${i.shortProfitExitUSD}</td>
                             <td>${i.longLossExitUSD}</td>

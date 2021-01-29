@@ -29,6 +29,10 @@ export const stockRiskDefinitions = {
         name: "Total in",
         description: "The total cost of all shares."
     },
+    riskPerShare: {
+        name: "Risk/share",
+        description: "The risk per share (useful for a stop loss)."
+    },
     longLossExit: {
         name: "Long loss exit",
         description: "The price to sell at to take a loss on a long trade."

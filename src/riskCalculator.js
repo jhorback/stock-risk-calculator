@@ -23,6 +23,7 @@ export { calculateRiskProfile, calculateTrade };
 /**
  * @typedef TradeReturn
  * @property {Number} totalIn
+ * @property {Number} riskPerShare
  * @property {Number} longProfitExit
  * @property {Number} longLossExit
  * @property {Number} shortProfitExit
@@ -77,11 +78,13 @@ function calculateTrade({
     const longLossExit = (totalIn - riskPerTrade) / count;
     const shortProfitExit = (totalIn - riskPerTrade*2) / count;
     const shortLossExit = (totalIn + riskPerTrade) / count;
-    /*
-    */
-        
+    const riskPerShare =  cost - ((totalIn - riskPerTrade) / count);
+    
+    
+
     const calculations = {
         totalIn,
+        riskPerShare,
         longLossExit,
         longProfitExit,
         shortProfitExit,

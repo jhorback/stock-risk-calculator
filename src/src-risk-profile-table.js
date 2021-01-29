@@ -135,7 +135,9 @@ class SrcRiskProfileTable extends LitElement {
                         <th title="${SrcAppData.definitions.count.description}"
                             >${SrcAppData.definitions.count.name}</th>
                         <th title="${SrcAppData.definitions.totalIn.description}"
-                            >${SrcAppData.definitions.totalIn.name}</th>
+                            >${SrcAppData.definitions.riskPerTrade.name}</th>
+                        <th title="${SrcAppData.definitions.riskPerShare.description}"
+                            >${SrcAppData.definitions.riskPerShare.name}</th>
                         <th title="${SrcAppData.definitions.shortLossExit.description}"
                             >${SrcAppData.definitions.shortLossExit.name}</th>
                         <th title="${SrcAppData.definitions.shortProfitExit.description}"
@@ -152,6 +154,7 @@ class SrcRiskProfileTable extends LitElement {
                             <td>${i.costUSD}</td>
                             <td>${i.count}</td>
                             <td>${i.totalInUSD}</td>
+                            <td>${i.riskPerShareUSD}</td>
                             <td>${i.shortLossExitUSD}</td>
                             <td>${i.shortProfitExitUSD}</td>
                             <td>${i.longLossExitUSD}</td>

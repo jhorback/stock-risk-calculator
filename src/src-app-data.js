@@ -27,6 +27,7 @@ export { SrcAppData }
  * @property {String} costUSD
  * @property {Number} count
  * @property {String} totalInUSD
+ * @property {String} riskPerShareUSD
  * @property {String} longProfitExitUSD
  * @property {String} longLossExitUSD
  * @property {String} shortProfitExitUSD
@@ -162,6 +163,7 @@ class SrcAppData extends HTMLElement {
             count,
             costUSD: formatUSD(cost),
             totalInUSD: formatUSD(item.totalIn),
+            riskPerShareUSD: formatUSD(item.riskPerShare),
             longProfitExitUSD: formatUSD(item.longProfitExit),
             longLossExitUSD: formatUSD(item.longLossExit),
             shortProfitExitUSD: formatUSD(item.shortProfitExit),
